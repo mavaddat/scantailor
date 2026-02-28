@@ -222,7 +222,7 @@ DistortionModelBuilder::tryBuildModel(DebugImages* dbg, QImage const* dbg_backgr
 #if QT_VERSION < QT_VERSION_CHECK( 5, 10, 0 )
     qsrand(0); // Repeatablity is important.
 #else
-    QRandomGenerator::global()->seed(0);
+    QRandomGenerator rand(0);
 #endif
 
     int random_pairs_remaining = 10;
@@ -231,8 +231,8 @@ DistortionModelBuilder::tryBuildModel(DebugImages* dbg, QImage const* dbg_backgr
         int i = qrand() % num_curves;
         int j = qrand() % num_curves;
 #else
-        int i = QRandomGenerator::global()->generate() % num_curves;
-        int j = QRandomGenerator::global()->generate() % num_curves;
+        int i = rand.generate() % num_curves;
+        int j = rand.generate() % num_curves;
 #endif
         if (i > j) {
             std::swap(i, j);

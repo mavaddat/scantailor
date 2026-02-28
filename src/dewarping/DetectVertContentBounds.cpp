@@ -307,7 +307,7 @@ SequentialColumnProcessor::approximateWithLine(std::vector<Segment>* dbg_segment
 #if QT_VERSION < QT_VERSION_CHECK( 5, 10, 0 )
     qsrand(0); // Repeatablity is important.
 #else
-    QRandomGenerator::global()->seed(0);
+    QRandomGenerator rand(0);
 #endif
 
     // We want to make sure we do pick a few segments closest
@@ -328,7 +328,7 @@ SequentialColumnProcessor::approximateWithLine(std::vector<Segment>* dbg_segment
 #if QT_VERSION < QT_VERSION_CHECK( 5, 10, 0 )
         ransac.buildAndAssessModel(segments[qrand() % segments.size()]);
 #else
-        ransac.buildAndAssessModel(segments[QRandomGenerator::global()->generate() % segments.size()]);
+        ransac.buildAndAssessModel(segments[rand.generate() % segments.size()]);
 #endif
     }
 
