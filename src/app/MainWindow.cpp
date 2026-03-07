@@ -2527,7 +2527,7 @@ MainWindow::showInsertFileDialog(BeforeOrAfter before_or_after, ImageId const& e
 #if QT_VERSION < QT_VERSION_CHECK(5, 8, 0)
             QModelIndex const idx(source_parent.child(source_row, 0));
 #else
-            QModelIndex const idx = index(source_row, 0, source_parent);
+            QModelIndex const idx = sourceModel()->index(source_row, 0, source_parent);
 #endif
             QVariant const data(idx.data(QFileSystemModel::FilePathRole));
             if (data.isNull()) {
